@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchMovie } from '../actions/movieActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs';
 import { useParams } from 'react-router-dom'; // Import useParams
-
+import ReviewForm from './reviewForm';
 const MovieDetail = () => {
   const dispatch = useDispatch();
   const { movieId } = useParams(); // Get movieId from URL parameters
@@ -13,9 +13,11 @@ const MovieDetail = () => {
   const error = useSelector(state => state.movie.error); // Assuming you have an error state in your reducer
 
 
+
   useEffect(() => {
     dispatch(fetchMovie(movieId));
   }, [dispatch, movieId]);
+
 
   const DetailInfo = () => {
     if (loading) {
@@ -51,7 +53,14 @@ const MovieDetail = () => {
             </h4>
           </ListGroupItem>
         </ListGroup>
+
         <Card.Body>
+          <h5>Submit a Review</h5>
+          <ReviewForm movieId={selectedMovie._id} />
+        </Card.Body>
+
+    
+        <Card.Body className="card-body bg-white">
           {selectedMovie.reviews.map((review, i) => (
             <p key={i}>
               <b>{review.username}</b>&nbsp; {review.review} &nbsp; <BsStarFill />{' '}
