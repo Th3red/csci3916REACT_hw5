@@ -1,3 +1,7 @@
+# Important links
+GithubAPI= https://github.com/Th3red/CSCI3916_HW4
+API_URL = https://csci3916-hw4-a6mf.onrender.com
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
